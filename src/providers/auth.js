@@ -7,12 +7,12 @@ const onRedirectCallback = (appState) => {
     navigate(appState?.returnTo || '/', { replace: true });
    };
 
-export const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
     return (
         // <div>{children}</div>
         <Auth0Provider
-            domain='dev-n4min6atgfa3ri3w.us.auth0.com' // {process.env.AUTH0_DOMAIN}
-            clientId='5kPlHLdJFnp5x8QpdUWblrETTx3kB5jy' // @todo {process.env.AUTH0_CLIENTID}
+            domain={process.env.GATSBY_AUTH0_DOMAIN}
+            clientId={process.env.GATSBY_AUTH0_CLIENTID}
             redirectUri={window.location.origin}
             onRedirectCallback={onRedirectCallback}
             >
@@ -21,4 +21,4 @@ export const AuthProvider = ({ children }) => {
     )
 }
 
-// export default AuthProvider;
+export default AuthProvider;

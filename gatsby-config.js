@@ -1,6 +1,6 @@
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
 const myQuery = `
   query {
@@ -48,11 +48,11 @@ module.exports = {
       // This plugin must be placed last in your list of plugins to ensure that it can query all the GraphQL data
       resolve: `gatsby-plugin-algolia`,
       options: {
-        appId: '0RZC3V8ZBW', // process.env.ALGOLIA_APP_ID,
+        appId: process.env.GATSBY_ALGOLIA_APP_ID,
         // Use Admin API key without GATSBY_ prefix, so that the key isn't exposed in the application
         // Tip: use Search API key with GATSBY_ prefix to access the service from within components
-        apiKey: 'd0a9da35d859649a04ec247f48c88e0d', // process.env.ALGOLIA_API_KEY,
-        indexName: 'pages', // process.env.ALGOLIA_INDEX_NAME, // for all queries
+        apiKey: process.env.GATSBY_ALGOLIA_API_KEY,
+        indexName: 'pages', // @todo process.env.ALGOLIA_INDEX_NAME, // for all queries
         queries,
         chunkSize: 10000, // default: 1000
         settings: {

@@ -1,14 +1,18 @@
+require("dotenv").config({
+    path: `.env.${process.env.NODE_ENV}`,
+  });
+
 const algoliasearch = require('algoliasearch');
 
 exports.createPages = async ({ actions }) => {
   const { createPage } = actions;
 
     const searchClient = algoliasearch(
-        '0RZC3V8ZBW', // process.env.GATSBY_ALGOLIA_APP_ID,
-        '7ea98c696a73ed82fa580ddeeb206199' // process.env.GATSBY_ALGOLIA_SEARCH_KEY
+        process.env.GATSBY_ALGOLIA_APP_ID,
+        process.env.GATSBY_ALGOLIA_SEARCH_KEY
     );
 
-    const index = searchClient.initIndex('home-depot-algolia-dummy-1'); // process.env.ALGOLIA_PRODUCT
+    const index = searchClient.initIndex(process.env.GATSBY_ALGOLIA_PRODUCT_INDEX);
 
     const response = await index.search('', {});
 
