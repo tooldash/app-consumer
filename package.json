@@ -1,0 +1,27 @@
+{
+  "name": "app-consumer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "app-consumer",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@auth0/auth0-react": "^2.3.0",
+    "@stripe/stripe-js": "^5.10.0",
+    "algoliasearch": "^4.24.0",
+    "dotenv": "^16.4.7",
+    "gatsby": "^5.14.1",
+    "gatsby-plugin-algolia": "^1.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-instantsearch": "^7.15.4"
+  }
+}
