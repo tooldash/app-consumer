@@ -1,23 +1,17 @@
-import React from 'react';
-import { navigate } from 'gatsby';
-import { Auth0Provider } from '@auth0/auth0-react';
+import React from "react";
+import { ClerkProvider } from '@clerk/clerk-react';
 
-const onRedirectCallback = (appState) => {
-    // Use Gatsby's navigate method to replace the url
-    navigate(appState?.returnTo || '/', { replace: true });
-   };
+const AuthProvider = ({children}) => {
+    const PUBLISHABLE_KEY=process.env.VITE_CLERK_PUBLISHABLE_KEY;
 
-const AuthProvider = ({ children }) => {
+    if (!PUBLISHABLE_KEY) {
+        throw new Error('Add your Clerk Publishable Key to the .env file');
+      }
+
+
     return (
         // <div>{children}</div>
-        <Auth0Provider
-            domain={process.env.GATSBY_AUTH0_DOMAIN}
-            clientId={process.env.GATSBY_AUTH0_CLIENTID}
-            redirectUri={window.location.origin}
-            onRedirectCallback={onRedirectCallback}
-            >
-            {children}
-        </Auth0Provider>
+        <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">{children}</ClerkProvider>
     )
 }
 
